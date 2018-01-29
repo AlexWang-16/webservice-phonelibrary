@@ -10,11 +10,13 @@ function get(req, res){
       Version: 1,
       Methods: {
         GET: {
-          URI: `/api/extract/phone/numbers/<up to 8kb of text with phone numbers>`,
+          URI: `/api/extract/phone/numbers/QueryString`,
+          QueryString: 'up to 8kb of text with phone numbers',
           RequestBody: 'None'
         },
         POST: {
           URI: `/api/extract/phone/numbers/`,
+          QueryString: 'None',
           RequestBody: `A property named 'text' with up to 100kb of text with phone numbers`
         }
       }
