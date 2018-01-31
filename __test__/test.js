@@ -20,7 +20,7 @@ describe('Root endpoint', () => {
         //POST assertions
         expect(response.body.Methods.POST.URI).toBe("/api/phonenumbers/parse/file/")
         expect(response.body.Methods.POST.RequestSegment).toBe("None")
-        expect(response.body.Methods.POST.RequestBody).toBe("A file of containing base64 encoded text file")
+        expect(response.body.Methods.POST.RequestBody).toBe("A file of containing base64 encoded text file under property name 'textFile'")
         expect(response.body.Methods.POST.Header).toBe("Content-Type: text/plain")
       })
       .catch (e => {

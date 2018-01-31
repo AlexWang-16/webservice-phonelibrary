@@ -17,7 +17,7 @@ function get(req, res){
         POST: {
           URI: `/api/phonenumbers/parse/file/`,
           RequestSegment: 'None',
-          RequestBody: `A file of containing base64 encoded text file`,
+          RequestBody: `A file of containing base64 encoded text file under property name 'textFile'`,
           Header: `Content-Type: text/plain`
         }
       }
