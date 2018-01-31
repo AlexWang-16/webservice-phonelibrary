@@ -1,20 +1,25 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const multer = require('multer')
 const app = express()
 
 // Enable json parsing
 app.use(bodyParser.json())
 
+// multer configs
+const upload = multer({ dest: 'uploads/'})
+
 // Dependencies
 const root_endpoint = require('./routes/index')
-const extract_phone_number = require('./routes/api/extract/phone_number')
+const parseText = require('./routes/api/phonenumbers/parse/text')
+const parseFile = require('./routes/api/phonenumbers/parse/file')
 
 // GET routes
 app.get('/', root_endpoint.get)
-app.get('/api/extract/phone/numbers/:input', extract_phone_number.get)
+app.get('/api/phonenumbers/parse/text/:input', parseText.get)
 
 // POST routes
-app.post('/api/extract/phone/numbers/', extract_phone_number.post) 
+app.post('/api/phonenumbers/parse/file/', upload.single('textFile'), parseFile.post) 
 
 app.listen(3000, function() {
   console.log(`Phone number extractor web service app now listening at port ${this.address().port}`)
