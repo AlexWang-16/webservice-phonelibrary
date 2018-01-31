@@ -17,15 +17,15 @@ function post(req, res){
       console.log(err)
       if (err.code === 'LIMIT_UNEXPECTED_FILE'){
         res.status(400)
-          .json({message:"field name for filename needs to be 'textField'"})
+          .json({error: "field name for filename needs to be 'textField'"})
       }else{
-        res.sendStatus(500)
+        res.status(500)
+          .json({error: "File not accepted. Internal server error occured."}, err)
       }
     }else{
       console.log(req.file)
       res.sendStatus(200)
     }
-    
   })
 
   
