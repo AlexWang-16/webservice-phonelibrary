@@ -1,34 +1,6 @@
 const request = require('supertest')
 const app = require('../app')
-const sampleFilesDir = `__test__`
-
-describe('Root endpoint', () => {
-  it('Should show web service options', () => {
-    return request(app)
-      .get("/")
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .then(response => {
-        expect.assertions(8);
-        expect(response.body.AppName)
-          .toBe("Phone number extractor web service")
-
-        //GET assertions
-        expect(response.body.Methods.GET.URI).toBe("/api/phonenumbers/parse/text/{RequestSegment}")
-        expect(response.body.Methods.GET.RequestSegment).toBe("a string of up to 8kb of text with phone number")
-        expect(response.body.Methods.GET.RequestBody).toBe('None')
-
-        //POST assertions
-        expect(response.body.Methods.POST.URI).toBe("/api/phonenumbers/parse/file/")
-        expect(response.body.Methods.POST.RequestSegment).toBe("None")
-        expect(response.body.Methods.POST.RequestBody).toBe("A file of containing base64 encoded text file under property name 'textFile'")
-        expect(response.body.Methods.POST.Header).toBe("Content-Type: text/plain")
-      })
-      .catch (e => {
-        throw new Error(e)
-      })
-  })
-})
+const sampleFilesDir = `__test__/sampleFiles`
 
 describe('Extract Phone Number', () => {
   describe('GET', () => {
@@ -58,7 +30,7 @@ describe('Extract Phone Number', () => {
     it('A file with 3 valid numbers should return them back', () => {
       return request(app)
         .post("/api/phonenumbers/parse/file")
-        .attach('textFile', `${sampleFilesDir}/sampleTextFile.txt`)
+        .attach('textFile', `${sampleFilesDir}/validNumbers.txt`)
         .expect(200)
         .then(res => {
           expect.assertions(5)
@@ -70,7 +42,17 @@ describe('Extract Phone Number', () => {
         })
     })
 
-    it('A file with duplicate numbers should not return duplicates')
+    it('A file with duplicate numbers should not return duplicates', () => {
+      return request(app)
+        .post("/api/phonenumbers/parse/file")
+        .attach('textFile', `${sampleFilesDir}/duplicateNumbers.txt`)
+        .expect(200)
+        .then(res => {
+          expect.assertions(2)
+          expect(res.body.length).toEqual(1)
+          expect(res.body[0]).toBe('+1(647)555-6666')
+        })
+    })
 
     it('North American numbers over 11 digits should not be returned')
 

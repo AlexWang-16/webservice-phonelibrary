@@ -34,7 +34,6 @@ function post(req, res){
       let convertedText = new Buffer(contents, 'base64').toString()
       try{
         let result = parseForNumbers(convertedText)
-        // let formattedNumber = phoneUtil.format(result, PNF.INTERNATIONAL)
         
         res.status(200).json(result)
         // Delete file
