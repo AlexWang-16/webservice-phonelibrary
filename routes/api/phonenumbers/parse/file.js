@@ -41,7 +41,7 @@ function post(req, res){
         fs.unlinkSync(req.file.path)
       }catch(e){
         res.status(500)
-          .json({error: `${e}`})
+          .json([])
       }
     }
   })
@@ -50,7 +50,6 @@ function post(req, res){
 function parseForNumbers(content){
   let filter = /\+*[()\d]+\s{0,1}[\d-]+/g
   let numbersFound = content.match(filter)
-  let results = []
   // numbersFound.forEach(number => {
     /* TODO: Validation code to ensure the numbers are valid */
   // })
@@ -60,3 +59,4 @@ function parseForNumbers(content){
 module.exports = {
   post
 }
+
