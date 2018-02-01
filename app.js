@@ -1,13 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const multer = require('multer')
 const app = express()
 
 // Enable json parsing
 app.use(bodyParser.json())
-
-// multer configs
-const upload = multer({ dest: 'uploads/'})
 
 // Dependencies
 const root_endpoint = require('./routes/index')
