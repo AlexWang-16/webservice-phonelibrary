@@ -7,7 +7,7 @@ function get(req, res){
   res.json(
     {
       AppName: `Phone number extractor web service`,
-      Version: 1,
+      Version: 1.25,
       Methods: {
         GET: {
           URI: `/api/phonenumbers/parse/text/{RequestSegment}`,
