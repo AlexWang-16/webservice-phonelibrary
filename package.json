@@ -4,8 +4,8 @@
   "description": "Phone library web service",
   "main": "app.js",
   "scripts": {
-    "test": "jest --verbose --runInBand --forceExit",
-    "start": "node app.js"
+    "test": "jest --verbose",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

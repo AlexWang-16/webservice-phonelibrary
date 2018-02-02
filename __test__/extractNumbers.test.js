@@ -24,21 +24,23 @@ describe('Extract Phone Number', () => {
         expect(res.body.length).toEqual(0)
       })
     }) 
+
+    it('1-800 numbers should be parsed properly')
+    it('1-800 numbers with letters should be parsed properly')
+    it('Multiple international formatted numbers in string should parse properly')
   })
 
   describe('POST', () => {
-    it('A file with 3 valid numbers should return them back', () => {
+    it('A file with 5 numbers should return only 2 international formatted numbers', () => {
       return request(app)
         .post("/api/phonenumbers/parse/file")
         .attach('textFile', `${sampleFilesDir}/validNumbers.txt`)
         .expect(200)
         .then(res => {
-          expect.assertions(5)
-          expect(res.body.length).toEqual(4)
+          expect.assertions(3)
+          expect(res.body.length).toEqual(2)
           expect(res.body[0]).toBe('+1(416)491-5050')
           expect(res.body[1]).toBe('+1(416) 123-1234')
-          expect(res.body[2]).toBe('(647) 111-2223')
-          expect(res.body[3]).toBe('222-1234')
         })
     })
 
@@ -54,8 +56,21 @@ describe('Extract Phone Number', () => {
         })
     })
 
-    it('North American numbers over 11 digits should not be returned')
+    it('North American numbers over 11 digits should not be returned',() => {
+      return request(app)
+        .post("/api/phonenumbers/parse/file")
+        .attach('textFile', `${sampleFilesDir}/tooLongNumber.txt`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.length).toEqual(0)
+          expect(Array.isArray(res.body)).toBeTruthy()
+        })
+    })
 
-    it('Invalid international numbers should not return')      
+    it('1-800 numbers should be parsed properly')
+    it('1-800 numbers with letters should be parsed properly')
+    it('Global international numbers should parse properly')
+    it('Numbers in PDF file should be extracted properly')
+    it('Local numbers without country code should parse properly')      
   })
 })

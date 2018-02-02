@@ -15,14 +15,13 @@ function post(req, res){
   upload(req, res, err => {
     if (err) {
       //Handle error
-      console.log('An error occured')
-      console.log(err)
+      console.error('An error occured')
       if (err.code === 'LIMIT_UNEXPECTED_FILE'){
         res.status(400)
-          .json({error: "field name for filename needs to be 'textField'"})
+          .json({error: "Field name for filename needs to be 'textFile'"})
       }else{
         res.status(500)
-          .json({error:"File not accepted. Internal server error occured."}, err)
+          .json({error:`File not accepted. Internal server error occured. ${err}`})
       }
     }else{
       let contents = fs.readFileSync(req.file.path, 'utf8', function(err, buf){
@@ -47,12 +46,25 @@ function post(req, res){
 }
 
 function parseForNumbers(content){
-  let filter = /\+*[()\d]+\s{0,1}[\d-]+/g
-  let numbersFound = content.match(filter)
-  // numbersFound.forEach(number => {
-    /* TODO: Validation code to ensure the numbers are valid */
-  // })
-  return numbersFound
+  
+  //fullFormatNumbers mean international format for North America only
+  // i.e. +1(647)111-2222
+  let fullFormatNumbers = /\+\d{0,1}\({0,1}\d{0,3}\){0,1}\s{0,1}\d{3}\-\d+/g
+  let fullFormatNumbersFound = content.match(fullFormatNumbers)
+
+  /* Detect phone numbers too long */
+  for (let i = 0; i < fullFormatNumbersFound.length; i++){
+    let trimmedStr = fullFormatNumbersFound[i].replace(/\s/g, '')
+    if (trimmedStr.length > 15){
+      fullFormatNumbersFound.splice(i, 1)
+    }
+  }
+
+  fullFormatNumbersFound = fullFormatNumbersFound.filter(function(num, index, self) {
+    return self.indexOf(num) == index
+  })
+
+  return fullFormatNumbersFound
 }
 
 module.exports = {
