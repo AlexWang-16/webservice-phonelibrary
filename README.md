@@ -31,6 +31,6 @@ Please send pull requests for fixes, updates and new features.
 
 * [google-libphonenumber](https://github.com/ruimarinho/google-libphonenumber) - An up to date version of [Google's libphonenumber](https://github.com/googlei18n/libphonenumber) packaged for Node JS
 
-*[SuperTest](https://github.com/visionmedia/supertest) - Unit testing framework for HTTP requests
+* [SuperTest](https://github.com/visionmedia/supertest) - Unit testing framework for HTTP requests
 
-*[Express JS](https://github.com/expressjs) - Fast minimalist framework for Node JS
+* [Express JS](https://github.com/expressjs) - Fast minimalist framework for Node JS
