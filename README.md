@@ -1,5 +1,5 @@
 # Phone Library Web Service
-A web service built using Node.JS that uses Google's phone library to parse a string and return phone numbers found in the text
+A web service built using Node.JS that uses Google's phone library to parse a string and return phone numbers found in a text file or as part of a URI segment
 
 ## User Requirements
 * [Node JS](https://nodejs.org/en/download/) 
