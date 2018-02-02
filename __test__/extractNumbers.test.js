@@ -27,7 +27,7 @@ describe('Extract Phone Number', () => {
     it('Phone number length too short should return []')
     it('1-800 numbers should be parsed properly')
     it('1-800 numbers with letters should be parsed properly')
-    it('Multiple international formatted numbers in string should parse properly')
+    it('International formatted numbers outside of North America parse properly')
   })
 
   describe('POST', () => {
@@ -67,7 +67,7 @@ describe('Extract Phone Number', () => {
     it('Phone number length too short should return []')
     it('1-800 numbers should be parsed properly')
     it('1-800 numbers with letters should be parsed properly')
-    it('Global international numbers should parse properly')
+    it('International formatted numbers outside of North America parse properly')
     it('Numbers in PDF file should be extracted properly')
     it('Local numbers without country code should parse properly')      
   })
