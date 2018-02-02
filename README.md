@@ -1,8 +1,8 @@
 # Phone Library Web Service
 A web service built using Node.JS that uses Google's phone library to parse a string and return phone numbers found in the text
 
-## System Requirements
-* [Node JS+](https://nodejs.org/en/download/) 
+## User Requirements
+* [Node JS](https://nodejs.org/en/download/) 
 * [Postman](https://www.getpostman.com) or a non-browser client app capable of performing HTTP requests
 
 ## Installation/Setup
@@ -16,7 +16,7 @@ A web service built using Node.JS that uses Google's phone library to parse a st
 4. Perform a GET request using provided information from root endpoint
 5. Perform a POST request using provided information from POST endpoint
 
-* Web service will respond only with JSON data
+**Note**: Web service will respond only with JSON data
 
 ## Unit Testing
 Execute `npm test` in the repository directory
@@ -25,3 +25,12 @@ All test codes are placed inside `__test__` directory. Please include all sample
 
 ## Contributing
 Please send pull requests for fixes, updates and new features.
+
+## Dependencies
+* [Node JS](https://nodejs.org/en/download/) 
+
+* [google-libphonenumber](https://github.com/ruimarinho/google-libphonenumber) - An up to date version of [Google's libphonenumber](https://github.com/googlei18n/libphonenumber) packaged for Node JS
+
+*[SuperTest](https://github.com/visionmedia/supertest) - Unit testing framework for HTTP requests
+
+*[Express JS](https://github.com/expressjs) - Fast minimalist framework for Node JS
