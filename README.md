@@ -27,7 +27,7 @@ All test codes are placed inside `__test__` directory. Please include all sample
 Please send pull requests for fixes, updates and new features.
 
 ## Dependencies
-* [Node JS](https://nodejs.org/en/download/) 
+* [Node JS](https://nodejs.org/en/download/) - A JavaScript runtime built on Chrome's V8 JavaScript engine
 
 * [google-libphonenumber](https://github.com/ruimarinho/google-libphonenumber) - An up to date version of [Google's libphonenumber](https://github.com/googlei18n/libphonenumber) packaged for Node JS
 
