@@ -24,7 +24,7 @@ describe('Extract Phone Number', () => {
         expect(res.body.length).toEqual(0)
       })
     }) 
-
+    it('Phone number length too short should return []')
     it('1-800 numbers should be parsed properly')
     it('1-800 numbers with letters should be parsed properly')
     it('Multiple international formatted numbers in string should parse properly')
@@ -43,7 +43,6 @@ describe('Extract Phone Number', () => {
           expect(res.body[1]).toBe('+1(416) 123-1234')
         })
     })
-
     it('A file with duplicate numbers should not return duplicates', () => {
       return request(app)
         .post("/api/phonenumbers/parse/file")
@@ -55,7 +54,6 @@ describe('Extract Phone Number', () => {
           expect(res.body[0]).toBe('+1(647)555-6666')
         })
     })
-
     it('North American numbers over 11 digits should not be returned',() => {
       return request(app)
         .post("/api/phonenumbers/parse/file")
@@ -66,7 +64,7 @@ describe('Extract Phone Number', () => {
           expect(Array.isArray(res.body)).toBeTruthy()
         })
     })
-
+    it('Phone number length too short should return []')
     it('1-800 numbers should be parsed properly')
     it('1-800 numbers with letters should be parsed properly')
     it('Global international numbers should parse properly')
