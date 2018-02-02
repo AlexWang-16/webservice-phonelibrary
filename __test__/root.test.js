@@ -15,13 +15,13 @@ describe('Root endpoint', () => {
 
         //GET assertions
         expect(response.body.Methods.GET.URI).toBe("/api/phonenumbers/parse/text/{RequestSegment}")
-        expect(response.body.Methods.GET.RequestSegment).toBe("a string of up to 8kb of text with phone number")
+        expect(response.body.Methods.GET.RequestSegment).toBe("a string of up to 8kb of text with one phone number")
         expect(response.body.Methods.GET.RequestBody).toBe('None')
 
         //POST assertions
         expect(response.body.Methods.POST.URI).toBe("/api/phonenumbers/parse/file/")
         expect(response.body.Methods.POST.RequestSegment).toBe("None")
-        expect(response.body.Methods.POST.RequestBody).toBe("A file of containing base64 encoded text file under property name 'textFile'")
+        expect(response.body.Methods.POST.RequestBody).toBe("A file containing base64 encoded text file under property name 'textFile'. Can contain multiple international formatted North American numbers")
         expect(response.body.Methods.POST.Header).toBe("Content-Type: text/plain")
       })
       .catch (e => {

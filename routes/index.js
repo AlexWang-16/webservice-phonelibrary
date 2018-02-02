@@ -7,17 +7,17 @@ function get(req, res){
   res.json(
     {
       AppName: `Phone number extractor web service`,
-      Version: 1.25,
+      Version: 1.2.6,
       Methods: {
         GET: {
           URI: `/api/phonenumbers/parse/text/{RequestSegment}`,
-          RequestSegment: 'a string of up to 8kb of text with phone number',
+          RequestSegment: 'a string of up to 8kb of text with one phone number',
           RequestBody: 'None'
         },
         POST: {
           URI: `/api/phonenumbers/parse/file/`,
           RequestSegment: 'None',
-          RequestBody: `A file of containing base64 encoded text file under property name 'textFile'`,
+          RequestBody: `A file containing base64 encoded text file under property name 'textFile'. Can contain multiple international formatted North American numbers`,
           Header: `Content-Type: text/plain`
         }
       }
