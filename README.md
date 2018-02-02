@@ -14,7 +14,7 @@ A web service built using Node.JS that uses Google's phone library to parse a st
 2. Launch Postman/HTTP client
 3. Perform a GET request to `localhost:3000/` to retrieve all possible URIs and usage information regarding the web service
 4. Perform a GET request using provided information from root endpoint
-5. Perform a POST request using provided information from POST endpoint
+5. Perform a POST request using provided information from root endpoint
 
 **Note**: Web service will respond only with JSON data
 
