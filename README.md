@@ -16,6 +16,7 @@ A web service built using Node.JS that uses Google's phone library to parse a st
 4. Perform a GET request using provided information from root endpoint
 5. Perform a POST request using provided information from POST endpoint
 
+* Web service will respond only with JSON data
 
 ## Unit Testing
 Execute `npm test` in the repository directory
